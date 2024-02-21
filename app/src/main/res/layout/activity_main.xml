@@ -7,59 +7,54 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/etX"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="X coordinates"
-        android:inputType="textPersonName"
+        android:id="@+id/editTextBeamLength"
+        android:layout_width="133dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Beam Length"
+
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddSupport"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Button
+        android:id="@+id/btnAddSupport"
+        android:layout_width="135dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="76dp"
+        android:text="Add Support"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etY"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="Y coordinates"
-        android:inputType="textPersonName"
+    <Button
+        android:id="@+id/btnAddLoad"
+        android:layout_width="138dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:textSize="12sp"
+        android:text="Add Load"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etX" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddSupport" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:id="@+id/btnPlot"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:textSize="12sp"
         android:text="Plot"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etY" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddLoad" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
