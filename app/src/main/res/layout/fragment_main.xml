@@ -1,0 +1,219 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/editTextBeamLengthCV"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutBeamLength"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:hint="Beam Length(m)"
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:boxStrokeColor="@color/clear"
+                    app:boxStrokeWidth="2dp"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextBeamLength"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/i_beam"
+                        android:drawablePadding="8dp"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:inputType="numberDecimal"
+                        android:paddingBottom="8dp"
+                        android:textSize="20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.cardview.widget.CardView>
+            <!-- Button Add Supports -->
+
+            <Button
+                android:id="@+id/btnAddSupport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Add Supports"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/editTextBeamLengthCV"
+                app:layout_constraintTop_toBottomOf="@+id/editTextBeamLengthCV" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/deleteCV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="15dp"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnAddSupport"
+                app:layout_constraintBottom_toTopOf="@id/cardViewSupports">
+
+                <ImageView
+                    android:id="@+id/iconImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@drawable/delete_all" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewSupports"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="@id/editTextBeamLengthCV"
+                app:layout_constraintStart_toStartOf="@id/editTextBeamLengthCV"
+                app:layout_constraintTop_toBottomOf="@id/btnAddSupport">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSupports"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Button Add Loads -->
+
+            <Button
+                android:id="@+id/btnAddLoad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Add Loads"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/editTextBeamLengthCV"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewSupports" />
+
+            <!-- RecyclerView for Loads -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewLoads"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="@id/editTextBeamLengthCV"
+                app:layout_constraintStart_toStartOf="@id/editTextBeamLengthCV"
+                app:layout_constraintTop_toBottomOf="@id/btnAddLoad">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLoads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnPlot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="184dp"
+                android:layout_marginTop="36dp"
+                android:textSize="18sp"
+                android:text="Plot"
+                app:layout_constraintStart_toStartOf="@id/editTextBeamLengthCV"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewLoads" />
+
+            <Button
+                android:id="@+id/btnAnalyse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="Analyse"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewLoads" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/btnAnalyse"
+                app:layout_constraintEnd_toStartOf="@id/btnPlot"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/analysisCV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:visibility="gone"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAnalyse"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/supportReactionTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:paddingBottom="8dp"
+                        android:paddingStart="50dp"
+                        android:paddingEnd="30dp"
+                        android:paddingTop="8dp"
+                        android:fontFamily="@font/sourcesansprosemibold"/>
+
+
+                    <TextView
+                        android:id="@+id/bendingMomentTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
+                        android:textSize="18sp"
+                        android:paddingStart="50dp"
+                        android:paddingEnd="30dp"
+                        android:paddingTop="8dp"
+                        android:fontFamily="@font/sourcesansprosemibold"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

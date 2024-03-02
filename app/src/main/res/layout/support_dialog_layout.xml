@@ -1,0 +1,79 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Support Position TextView -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Support Position (m)"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Support Position EditText -->
+        <EditText
+            android:id="@+id/editTextPosition"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Enter support position"
+            android:inputType="numberDecimal"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/edit_text_background" />
+
+
+        <!-- Translational and Rotational DoFs TextView -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Translational (x, y) and Rotational (m) DoFs"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Checkbox Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Checkbox for 'x' DoF -->
+            <CheckBox
+                android:id="@+id/checkBoxX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x"
+                android:background="@drawable/checkboxdrawable"
+                android:fontFamily="@font/sourcesansprosemibold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <!-- Checkbox for 'y' DoF -->
+            <CheckBox
+                android:id="@+id/checkBoxY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="y"
+                android:background="@drawable/checkboxdrawable"
+                android:fontFamily="@font/sourcesansprosemibold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <!-- Checkbox for 'm' DoF -->
+            <CheckBox
+                android:id="@+id/checkBoxM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checkboxdrawable"
+                android:text="m"
+                android:fontFamily="@font/sourcesansprosemibold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
