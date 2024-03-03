@@ -4,10 +4,7 @@ plugins {
     id("com.chaquo.python")
     id("androidx.navigation.safeargs")
     kotlin("kapt") // Apply the Kotlin Kapt plugin
-
 }
-
-
 android {
     namespace = "com.android.cbeam"
     compileSdk = 34
