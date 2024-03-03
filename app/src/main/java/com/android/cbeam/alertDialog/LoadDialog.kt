@@ -1,6 +1,5 @@
 package com.android.cbeam.alertDialog
 
-
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -11,7 +10,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.android.cbeam.R
+import com.android.cbeam.databinding.LoadDialogLayoutBinding
+import com.android.cbeam.model.DistributedLoadV
 import com.android.cbeam.model.Load
+import com.android.cbeam.model.PointLoadV
+import com.android.cbeam.model.PointTorque
 
 object LoadDialog {
 

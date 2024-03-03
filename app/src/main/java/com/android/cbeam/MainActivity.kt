@@ -1,6 +1,5 @@
 package com.android.cbeam
 
-
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
@@ -16,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.android.cbeam.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set an OnClickListener for the menu item
         beamDesignMenuItem.setOnMenuItemClickListener {
-            // Navigate to the com.chaquo.myapplication.ui.fragments.BeamDesignFragment when the menu item is clicked
+            // Navigate to the com.android.cbeam.ui.BeamDesignFragment when the menu item is clicked
             navController.navigate(R.id.beamDesignFragment)
             true // Return true to indicate that the click event has been handled
         }

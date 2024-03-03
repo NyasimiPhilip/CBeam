@@ -6,10 +6,10 @@ import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.widget.Toast
+import com.android.cbeam.databinding.SupportDialogLayoutBinding
 import com.android.cbeam.model.Support
 
 object SupportDialog {
-
     interface SupportDialogListener {
         fun onSupportAdded(support: Support?)
     }
@@ -49,14 +49,12 @@ object SupportDialog {
                 position,
                 Triple(if (xChecked) 1 else 0, if (yChecked) 1 else 0, if (mChecked) 1 else 0)
             )
-
             listener.onSupportAdded(support)
         }
 
         builder.setNegativeButton("Cancel") { dialog: DialogInterface, which: Int ->
             dialog.cancel()
         }
-
         val dialog = builder.create()
         dialog.show()
     }

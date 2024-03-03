@@ -25,7 +25,6 @@ class SupportAdapter(private val supports: MutableList<Support>) :
             true
         }
     }
-
     override fun getItemCount(): Int {
         return supports.size
     }

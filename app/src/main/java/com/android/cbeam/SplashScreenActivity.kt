@@ -1,6 +1,5 @@
 package com.android.cbeam
 
-
 import android.app.ActivityManager
 import android.content.Intent
 import android.os.Bundle

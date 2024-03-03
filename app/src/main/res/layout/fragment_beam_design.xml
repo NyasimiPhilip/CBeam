@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
+   <!-- <data>
         <variable
             name="viewModel"
-            type="com.chaquo.myapplication.ui.fragments.BeamDesignFragmentViewModel" />
-    </data>
+            type="com.android.cbeam.ui.BeamDesignFragmentViewModel" />
+    </data>-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Height EditText -->
+            <!--&lt;!&ndash; Height EditText &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewHeight"
                 android:layout_width="0dp"
@@ -40,11 +40,12 @@
                     android:layout_margin="14dp"
                     android:textColor="@color/deepBlue"
                     android:saveEnabled="true"
-                    app:heightWithSuffix="@{viewModel.height}"
+
                     />
             </androidx.cardview.widget.CardView>
 
-            <!-- Width EditText -->
+           <!-- app:heightWithSuffix="@{viewModel.height}"-->
+           <!-- &lt;!&ndash; Width EditText &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewWidth"
                 android:layout_width="0dp"
@@ -64,14 +65,14 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="14dp"
                     android:hint="Width (mm)"
-                    app:widthWithSuffix="@{viewModel.width}"
+
                     android:saveEnabled="true"
                     android:inputType="numberDecimal"
                     android:textColor="@color/deepBlue"
                     />
             </androidx.cardview.widget.CardView>
-
-            <!-- Cover EditText -->
+            <!--app:widthWithSuffix="@{viewModel.width}"-->
+         <!--   &lt;!&ndash; Cover EditText &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewCover"
                 android:layout_width="154dp"
@@ -99,7 +100,7 @@
                     />
             </androidx.cardview.widget.CardView>
 
-            <!-- Bending Moment EditText -->
+           <!-- &lt;!&ndash; Bending Moment EditText &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewMoment"
                 android:layout_width="185dp"
@@ -126,7 +127,7 @@
                     />
             </androidx.cardview.widget.CardView>
 
-            <!-- Reinforcement Strength EditText -->
+           <!-- &lt;!&ndash; Reinforcement Strength EditText &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewStrength"
                 android:layout_width="158dp"
@@ -152,8 +153,8 @@
                     android:textColor="@color/deepBlue"
                     />
             </androidx.cardview.widget.CardView>
-
-            <!-- Bar Diameter EditText -->
+<!--
+            &lt;!&ndash; Bar Diameter EditText &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewReinforcement"
                 android:layout_width="152dp"
@@ -180,7 +181,7 @@
                     />
             </androidx.cardview.widget.CardView>
 
-            <!-- Link Diameter EditText -->
+         <!--   &lt;!&ndash; Link Diameter EditText &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewLinkDiameter"
                 android:layout_width="161dp"
@@ -207,7 +208,7 @@
                     />
             </androidx.cardview.widget.CardView>
 
-            <!-- Button to Calculate -->
+           <!-- &lt;!&ndash; Button to Calculate &ndash;&gt;-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewBarDiameter"
                 android:layout_width="167dp"
@@ -234,7 +235,7 @@
                     />
             </androidx.cardview.widget.CardView>
 
-            <!-- Result TextView -->
+            <!--&lt;!&ndash; Result TextView &ndash;&gt;-->
             <TextView
                 android:id="@+id/textViewResult"
                 android:layout_width="wrap_content"
@@ -246,7 +247,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardViewLinkDiameter" />
 
-            <!-- Button to Calculate -->
+         <!--   &lt;!&ndash; Button to Calculate &ndash;&gt;-->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCalculate"
                 android:layout_width="wrap_content"
@@ -266,3 +267,4 @@
     </androidx.core.widget.NestedScrollView>
 
 </layout>
+

@@ -49,7 +49,6 @@ class LoadAdapter(private val loads: MutableList<Load>) :
     override fun getItemCount(): Int {
         return loads.size
     }
-
     override fun getItemViewType(position: Int): Int {
         return when (loads[position]) {
             is PointLoadV -> VIEW_TYPE_POINT_LOAD_V

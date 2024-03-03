@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.chaquo.myapplication.ui.fragments.MainFragment"
+        android:name="com.android.cbeam.ui.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main"        >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/beamDesignFragment"
-        android:name="com.chaquo.myapplication.ui.fragments.BeamDesignFragment"
+        android:name="com.android.cbeam.ui.BeamDesignFragment"
         android:label="BeamDesignFragment"
         tools:layout="@layout/fragment_beam_design"/>
 </navigation>
