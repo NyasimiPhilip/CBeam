@@ -1,5 +1,5 @@
-#CBeam
-![Logo](Icon.png) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Your Text Here
+<h1>CBeam</h1>
+![Logo](Icon.png) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 
  <br>     
 <h2>Demo</h2>
