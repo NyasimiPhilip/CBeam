@@ -8,259 +8,384 @@
             name="viewModel"
             type="com.android.cbeam.ui.BeamDesignFragmentViewModel" />
     </data>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="#D7DAEF">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewHeight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:elevation="8dp"
-                android:background="@drawable/gradient_background"
-                app:layout_constraintEnd_toStartOf="@id/cardViewWidth"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="8dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/editTextHeight"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Height (mm)"
-                    android:inputType="numberDecimal"
-                    android:layout_margin="14dp"
-                    android:textColor="@color/deepBlue"
-                    android:saveEnabled="true"
-
-                    />
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewWidth"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:elevation="8dp"
-                android:background="@drawable/gradient_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/cardViewHeight"
-                app:layout_constraintTop_toTopOf="parent"
-                app:cardCornerRadius="8dp">
-
-                <EditText
-                    android:id="@+id/editTextWidth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="14dp"
-                    android:hint="Width (mm)"
-
-                    android:saveEnabled="true"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/deepBlue"
-                    />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewCover"
-                android:layout_width="154dp"
-                android:layout_height="72dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="32dp"
-                android:elevation="8dp"
-                android:background="@drawable/gradient_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.062"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewHeight"
-                app:cardCornerRadius="8dp">
-
-                <EditText
-                    android:id="@+id/editTextCover"
-                    android:layout_width="match_parent"
+                <!-- CardView Grid -->
+                <GridLayout
+                    android:id="@+id/gridLayout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:hint="Cover to Reinforcement (mm)"
-                    android:saveEnabled="true"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/deepBlue"
-                    />
-            </androidx.cardview.widget.CardView>
+                    android:columnCount="2"
+                    android:rowCount="8"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-           <!-- &lt;!&ndash; Bending Moment EditText &ndash;&gt;-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewMoment"
-                android:layout_width="185dp"
-                android:layout_height="67dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="4dp"
-                android:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewWidth"
-                app:cardCornerRadius="8dp">
+                    <!-- Height -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Height (mm)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="0"
+                        android:layout_column="0" />
 
-                <EditText
-                    android:id="@+id/editTextMoment"
-                    android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewHeight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        android:background="@drawable/gradient_background"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="0"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextHeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:padding="5dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            app:heightWithSuffix="@{viewModel.height}"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Width -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Width (mm)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="1"
+                        android:layout_column="0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewWidth"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        android:background="@drawable/gradient_background"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="1"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextWidth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:padding="5dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            app:widthWithSuffix="@{viewModel.width}"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Cover to Reinforcement -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cover to Reinforcement (mm)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="2"
+                        android:layout_column="0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewCover"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        android:background="@drawable/gradient_background"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="2"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextCover"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16dp"
+                            android:padding="5dp"
+
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Bending Moment -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bending Moment (Kn/m)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="3"
+                        android:layout_column="0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewMoment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="3"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextMoment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Cylinder Strength -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cylinder Strength (N/mm^2)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="4"
+                        android:layout_column="0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewStrength"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="4"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextStrength"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Reinforcement Strength -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reinforcement Strength (N/mm^2)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="5"
+                        android:layout_column="0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewReinforcement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="5"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextReinforcement"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Link Diameter -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Link Diameter (mm)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="6"
+                        android:layout_column="0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewLinkDiameter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="6"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextLinkDiameter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Bar Diameter -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bar Diameter (mm)"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textSize="16sp"
+                        android:textColor="@color/deepBlue"
+                        android:layout_gravity="center_vertical"
+                        android:layout_row="7"
+                        android:layout_column="0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewBarDiameter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:elevation="8dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_columnWeight="1"
+                        android:layout_row="7"
+                        android:layout_column="1">
+
+                        <EditText
+                            android:id="@+id/editTextBarDiameter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            android:textColor="@color/deepBlue"
+                            android:inputType="numberDecimal"
+                            android:saveEnabled="true"
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ResultCV"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="14dp"
-                    android:hint="Bending Moment (N/mm)"
-                    android:saveEnabled="true"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/deepBlue"
-                    />
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewStrength"
-                android:layout_width="158dp"
-                android:layout_height="78dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="16dp"
-                android:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewCover"
-                app:cardCornerRadius="8dp">
-
-                <EditText
-                    android:id="@+id/editTextStrength"
-                    android:layout_width="match_parent"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gridLayout">
+                    <TextView
+                        android:id="@+id/textViewResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/sourcesansprosemibold"
+                        android:textColor="@android:color/black"
+                        />
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/deleteAll"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="14dp"
-                    android:hint="Cylinder Strength (N/mm^2)"
-                    android:saveEnabled="true"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/deepBlue"
-                    />
-            </androidx.cardview.widget.CardView>
-<!--
-            &lt;!&ndash; Bar Diameter EditText &ndash;&gt;-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewReinforcement"
-                android:layout_width="152dp"
-                android:layout_height="63dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="20dp"
-                android:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.942"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewMoment"
-                app:cardCornerRadius="8dp">
+                    android:elevation="15dp"
+                    app:cardCornerRadius="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/buttonCalculate"
+                    app:layout_constraintTop_toBottomOf="@+id/ResultCV"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-                <EditText
-                    android:id="@+id/editTextReinforcement"
-                    android:layout_width="match_parent"
+                    <ImageView
+                        android:id="@+id/iconImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:src="@drawable/delete_all" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Button to Calculate -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonCalculate"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="14dp"
-                    android:hint="Reinforcement Strength (N/mm^2)"
+                    android:layout_margin="16dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/sourcesansprosemibold"
                     android:saveEnabled="true"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/deepBlue"
-                    />
-            </androidx.cardview.widget.CardView>
+                    android:text="Calculate"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.065"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ResultCV" />
 
-         <!--   &lt;!&ndash; Link Diameter EditText &ndash;&gt;-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewLinkDiameter"
-                android:layout_width="161dp"
-                android:layout_height="89dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="16dp"
-                android:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardViewStrength"
-                app:cardCornerRadius="8dp">
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-                <EditText
-                    android:id="@+id/editTextLinkDiameter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="14dp"
-                    android:hint="Link Diameter (mm)"
-                    android:saveEnabled="true"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/deepBlue"
-                    />
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewBarDiameter"
-                android:layout_width="167dp"
-                android:layout_height="70dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="20dp"
-                android:elevation="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.979"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewReinforcement"
-                app:cardCornerRadius="8dp">
-
-                <EditText
-                    android:id="@+id/editTextBarDiameter"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="14dp"
-                    android:hint="Bar Diameter (mm)"
-                    android:saveEnabled="true"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/deepBlue"
-                    />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/textViewResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardViewLinkDiameter" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonCalculate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:layout_marginTop="36dp"
-                android:text="Calculate"
-                android:saveEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
 </layout>
-

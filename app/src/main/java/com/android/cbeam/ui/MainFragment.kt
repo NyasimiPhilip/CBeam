@@ -91,7 +91,15 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
             if (isAnalysisPerformed) {
                 analysisCV.visibility = View.VISIBLE
             }
+            viewModel.supportReaction.observe(viewLifecycleOwner) { supportReaction ->
+                // Update support reaction TextView
+                binding.supportReactionTV.text = supportReaction
+            }
 
+            viewModel.bendingMoment.observe(viewLifecycleOwner) { bendingMoment ->
+                // Update bending moment TextView
+                binding.bendingMomentTV.text = bendingMoment
+            }
 
             btnAddSupport.setOnClickListener {
                 SupportDialog.show(requireContext(), object : SupportDialog.SupportDialogListener {
@@ -102,7 +110,6 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                     }
                 })
             }
-
             btnAddLoad.setOnClickListener {
                 LoadDialog.show(requireContext(), object : LoadDialog.LoadDialogListener {
                     override fun onLoadAdded(load: Load, callback: () -> Unit) {
@@ -152,9 +159,6 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                     }
                 }
             }
-
-
-
             btnPlot.setOnClickListener {
                 val beamLength: Double = editTextBeamLength.text.toString().toDoubleOrNull() ?: 0.0
 
@@ -195,8 +199,6 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                     }
                 }
             }
-
-
             // Observe LiveData for support reaction and bending moment
             viewModel.supportReaction.observe(viewLifecycleOwner) { reaction ->
                 supportReactionTV.text = reaction
@@ -280,7 +282,6 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
             })
 
             loadItemTouchHelper.attachToRecyclerView(rvLoads)
-
         }
         return view
     }
