@@ -1,4 +1,4 @@
-![Logo](Icon.png) Your Text Here
+![Logo](Icon.png) 
 ![Logo](Icon.png) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Your Text Here
 
  <br>     
