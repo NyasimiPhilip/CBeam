@@ -1,9 +1,8 @@
- <img src="update.png" alt="Logo">
- <h1>Cbeam</h1> 
-    <p>An Android app to automatically to visualise sfd and bmd profiles</p>   
-    
+ <img src="update.png" alt="Logo">    
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF">
+   <h1>Cbeam</h1> 
+    <p>An Android app to automatically to visualise sfd and bmd profiles</p>  
     <h2>Features</h2>
     <ul>
         <li>Add Load configuration.</li>
