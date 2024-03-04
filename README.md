@@ -1,6 +1,5 @@
  <img src="iconic.png" alt="Logo">
- <br>
-    <h2>An Android app to automatically visualize sfd and bmd profiles</h2>    
+ <br>      
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF"> 
     <h2>Features</h2>
