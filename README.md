@@ -1,4 +1,4 @@
-![Logo](Icon.png) # Your Text Here
+![Logo](Icon.png) <h1> Your Text Here</h1>
  <br>      
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF"> 
