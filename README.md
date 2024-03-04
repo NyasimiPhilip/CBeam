@@ -3,7 +3,7 @@
     <h2>Note</h2>
     <p>This project is still inn development Feel free to contribute.</p>
     <h2>Demo</h2>
-  ![DEMO](gif.gif)
+  <img src="Demo.gif" alt="DEMO GIF">
     <h2>Features</h2>
     <ul>
         <li>Add Load configuration.</li>
