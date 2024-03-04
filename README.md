@@ -1,4 +1,4 @@
- <img src="update(2).png" alt="Logo">    
+ <img src="Icon.png" alt="Logo">    
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF">
    <h1>Cbeam</h1> 
