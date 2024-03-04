@@ -1,12 +1,10 @@
+ <img src="Icon.png" alt="Logo">
 <div style="text-align: center;">
     <h1>Cbeam</h1>
-    <p>An Android app to automatically visualize sfd and bmd profiles</p>
-    <img src="Icon.png" alt="Logo">
+    <p>An Android app to automatically visualize sfd and bmd profiles</p>   
 </div>   
     <h2>Demo</h2>
-  <img src="Demo.gif" alt="DEMO GIF">
-   <h1>Cbeam</h1> 
-    <p>An Android app to automatically visualise sfd and bmd profiles</p>  
+  <img src="Demo.gif" alt="DEMO GIF"> 
     <h2>Features</h2>
     <ul>
         <li>Add Load configuration.</li>
