@@ -27,5 +27,5 @@
     </ol>
     <h2>Developers</h2>
     <h3>Author</h3>
-    <p>Nyaasimi Philip <a href="https://github.com/NyasimiPhilip">@NyasimiPhilip</a></p>
+    <p><a href="https://github.com/NyasimiPhilip">Nyasimi Philip</a></p>
 
