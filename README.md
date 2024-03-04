@@ -1,4 +1,4 @@
- <img src="Icon.png" alt="Logo">
+ <img src="iconic.png" alt="Logo">
  <br>
 <div style="text-align: center;">
     <p>An Android app to automatically visualize sfd and bmd profiles</p>   
