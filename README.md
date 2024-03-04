@@ -1,8 +1,3 @@
-<br>
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-![Logo](Icon.png) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-
 <h1>CBeam</h1>
  <br>     
 <h2>Demo</h2>
