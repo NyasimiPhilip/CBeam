@@ -1,4 +1,8 @@
- <img src="Icon.png" alt="Logo">    
+<div style="text-align: center;">
+    <h1>Cbeam</h1>
+    <p>An Android app to automatically visualize sfd and bmd profiles</p>
+    <img src="Icon.png" alt="Logo">
+</div>   
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF">
    <h1>Cbeam</h1> 
