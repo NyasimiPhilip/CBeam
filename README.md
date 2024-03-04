@@ -1,11 +1,8 @@
 ![Logo](Icon.png) Your Text Here
- <br>     
- <div style="display: flex; align-items: center;">
-    <img src="Icon.png" alt="Logo" style="width: 100px;"> <!-- Adjust width as needed -->
-    <h1 style="margin-left: 20px;">Your Text Here</h1>
-</div>
+![Logo](Icon.png) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Your Text Here
 
-    <h2>Demo</h2>
+ <br>     
+<h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF"> 
     <h2>Features</h2>
     <ul>
