@@ -18,7 +18,6 @@
     <h2>License</h2>
     <p>This project is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3 License</a>.</p>
     <h2>Contributing</h2>
-    <h2>Note</h2>
     <p>This project could still be improved</p>
     <p>Contributions are welcome! To contribute, please follow these guidelines:</p>
     <ol>
