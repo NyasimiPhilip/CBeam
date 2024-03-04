@@ -3,7 +3,6 @@ package com.android.cbeam.alertDialog
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -22,30 +21,63 @@ object LoadDialog {
     interface LoadDialogListener {
         fun onLoadAdded(load: Load, callback: () -> Unit)
     }
+    fun show(context: Context?, originalLoad: Load? = null, listener: LoadDialogListener) {
+        if (context == null) return
 
-    fun show(context: Context?, listener: LoadDialogListener) {
-        Log.d("LoadDialog", "Context: $context")
         val builder = AlertDialog.Builder(context)
         val inflater = LayoutInflater.from(context)
         val binding = LoadDialogLayoutBinding.inflate(inflater)
         builder.setView(binding.root)
 
-        binding.apply {
-            loadTypeSpinner.adapter = ArrayAdapter.createFromResource(context!!, R.array.load_types, android.R.layout.simple_spinner_item)
-            loadTypeSpinner.setSelection(0)
+        val loadTypes = context.resources.getStringArray(R.array.load_types)
 
-            loadTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    val isDistributedLoad = loadTypeSpinner.selectedItem == "Distributed Load"
-                    loadRangeTextView.visibility = if(isDistributedLoad) View.VISIBLE else View.GONE
-                    loadRangeFrame.visibility = if (isDistributedLoad) View.VISIBLE else View.GONE
-                    loadPositionEditText.visibility = if (isDistributedLoad) View.GONE else View.VISIBLE
-                    loadPositionLabel.visibility = if (isDistributedLoad) View.GONE else View.VISIBLE
+        // Set up spinner
+        val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, loadTypes)
+        binding.loadTypeSpinner.adapter = adapter
 
-                }
 
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
+        // Set original load data if provided
+        originalLoad?.let { load ->
+            // Update spinner selection based on the original load type
+            val selectedPosition = when (load) {
+                is DistributedLoadV -> 1
+                is PointLoadV -> 0
+                is PointTorque -> 2
+                else -> 0 // Default to the first item if the load type is not recognized
             }
+            binding.loadTypeSpinner.setSelection(selectedPosition)
+
+            // Handle each load type correctly
+            when (load) {
+                is DistributedLoadV -> {
+                    binding.loadMagnitudeEditText.setText(load.magnitude.toString())
+                    binding.loadStartEditText.setText(load.positionRange[0].toString())
+                    binding.loadEndEditText.setText(load.positionRange[1].toString())
+                }
+                is PointLoadV -> {
+                    binding.loadMagnitudeEditText.setText(load.magnitude.toString())
+                    binding.loadPositionEditText.setText(load.position.toString())
+                }
+                is PointTorque -> {
+                    binding.loadMagnitudeEditText.setText(load.magnitude.toString())
+                    binding.loadPositionEditText.setText(load.position.toString())
+                }
+                else -> {
+                    // Handle default case or any other load types
+                }
+            }
+        }
+        // Set up spinner listener
+        binding.loadTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val isDistributedLoad = position == 1
+                binding.loadRangeTextView.visibility = if (isDistributedLoad) View.VISIBLE else View.GONE
+                binding.loadRangeFrame.visibility = if (isDistributedLoad) View.VISIBLE else View.GONE
+                binding.loadPositionEditText.visibility = if (isDistributedLoad) View.GONE else View.VISIBLE
+                binding.loadPositionLabel.visibility = if (isDistributedLoad) View.GONE else View.VISIBLE
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         builder.setTitle("Add Load")
@@ -55,13 +87,13 @@ object LoadDialog {
             val magnitudeStr = binding.loadMagnitudeEditText.text.toString()
 
             if (magnitudeStr.isBlank()) {
-                Toast.makeText(context, "Please enter valid magnitude and position", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please enter valid magnitude", Toast.LENGTH_SHORT).show()
                 return@setPositiveButton
             }
 
             val magnitude = magnitudeStr.toInt()
 
-            val load: Load = when (type) {
+            val load = when (type) {
                 "Distributed Load" -> {
                     val startStr = binding.loadStartEditText.text.toString()
                     val endStr = binding.loadEndEditText.text.toString()
@@ -106,14 +138,13 @@ object LoadDialog {
                     PointLoadV(magnitude, position)
                 }
             }
-            listener.onLoadAdded(load) {
-                // Hide keyboard after load is added
-                val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
 
+            listener.onLoadAdded(load) {
+                val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
             }
             dialog.dismiss()
-            // Hide keyboard after dialog is dismissed
+
             val currentFocus = (context as? Activity)?.currentFocus
             currentFocus?.let {
                 (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
@@ -128,4 +159,6 @@ object LoadDialog {
         val dialog = builder.create()
         dialog.show()
     }
+
+
 }

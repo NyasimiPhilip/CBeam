@@ -1,5 +1,6 @@
 package com.android.cbeam.ui
 
+
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
@@ -59,20 +60,20 @@ class BeamDesignFragmentViewModel : ViewModel() {
         val steelArea = if (K < 0.167) {
             val innerSqrtValue = 0.25 - K / 1.134
             var Z = d * (0.5 + sqrt(innerSqrtValue))
-            println("0.95 * d= ${0.95 * d}")
             if (Z < 0.95 * d) {
                 val As = moment / (0.87 * reinforcementStrength * Z)
-                println(As)
-                Pair(As, "Singly Reinforced")
+                val roundedAs = String.format("%.2f", As)
+                Pair("$roundedAs mm^2", "Singly Reinforced")
             } else {
                 val As = moment / (0.87 * reinforcementStrength * (0.95 * d))
-                println(As)
-                Pair(As, "Singly Reinforced")
+                val roundedAs = String.format("%.2f", As)
+                Pair("$roundedAs mm^2", "Singly Reinforced")
             }
         } else {
             val K_prime = 0.167
             val d_prime = cover + linkDiameter + barDiameter / 2
-            val As_prime = (K - K_prime) * strength * width * d.pow(2) / (0.87 * reinforcementStrength * (d - d_prime))
+            val As_prime = ((K - K_prime) * strength * width * d.pow(2) / (0.87 * reinforcementStrength * (d - d_prime)))
+                .roundToTwoDecimalPlaces()
             val innerSqrtValue = 0.25 - K / 1.134
             if (innerSqrtValue < 0) {
                 println("Error: Negative value under the square root. Beam fails.")
@@ -81,23 +82,25 @@ class BeamDesignFragmentViewModel : ViewModel() {
             }
             var Z = d * (0.5 + sqrt(innerSqrtValue))
             val As = if (Z < 0.95 * d) {
-                (K_prime * strength * width * d.pow(2)) / (0.87 * reinforcementStrength * Z) + As_prime
+                ((K_prime * strength * width * d.pow(2)) / (0.87 * reinforcementStrength * Z) + As_prime).roundToTwoDecimalPlaces()
             } else {
                 Z = 0.95 * d
-                (K_prime * strength * width * d.pow(2)) / (0.87 * reinforcementStrength * Z) + As_prime
+                ((K_prime * strength * width * d.pow(2)) / (0.87 * reinforcementStrength * Z) + As_prime).roundToTwoDecimalPlaces()
             }
-            Triple(As_prime, As, "Doubly Reinforced (Compression and Tension)")
+            Triple("$As_prime mm^2", "$As mm^2", "Doubly Reinforced (Compression and Tension)")
         }
 
         steelArea.let {
             val resultString = when (it) {
-                is Pair<*, *> -> "Result: ${it.first}, ${it.second}"
-                is Triple<*, *, *> -> "Result: ${it.first}, ${it.second}, ${it.third}"
+                is Pair<*, *> -> "Required Steel Area: ${it.first}, ${it.second}"
+                is Triple<*, *, *> -> "Required Steel Area ${it.first}, ${it.second}, ${it.third}"
                 else -> "Invalid result"
             }
             _result.value = resultString
         }
-
+    }
+    fun Double.roundToTwoDecimalPlaces(): Double {
+        return String.format("%.2f", this).toDouble()
     }
 
     companion object {
@@ -123,6 +126,6 @@ class BeamDesignFragmentViewModel : ViewModel() {
             }
         }
 
-        // Define other BindingAdapters for other EditText fields similarly...
+
     }
 }

@@ -86,5 +86,22 @@ class MainFragmentViewModel(private val savedStateHandle: SavedStateHandle) : Vi
         updateSupportReaction("") // Clear support reaction
         updateBendingMoment("") // Clear bending moment
     }
+    // Method to update support at a specific position
+    fun updateSupport(position: Int, updatedSupport: Support) {
+        val currentList = supportsLiveData.value
+        if (currentList != null && position >= 0 && position < currentList.size) {
+            currentList[position] = updatedSupport
+            supportsLiveData.value = currentList
+        }
+    }
+
+    // Method to update load at a specific position
+    fun updateLoad(position: Int, updatedLoad: Load) {
+        val currentList = loadsLiveData.value
+        if (currentList != null && position >= 0 && position < currentList.size) {
+            currentList[position] = updatedLoad
+            loadsLiveData.value = currentList
+        }
+    }
 
 }

@@ -9,19 +9,18 @@ import com.android.cbeam.model.Load
 import com.android.cbeam.model.PointLoadV
 import com.android.cbeam.model.PointTorque
 
-/**
- * Adapter for populating a RecyclerView with Load items.
- * @param loads List of Load items to be displayed.
- */
-class LoadAdapter(private val loads: MutableList<Load>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class LoadAdapter(
+    private val loads: MutableList<Load>,
+    private val itemDeleteListener: ItemDeleteListener?,
+    private val itemEditListener: ItemEditListener? // Added ItemEditListener
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface ItemDeleteListener {
         fun onDeleteItem(position: Int)
     }
-
-    var itemDeleteListener: ItemDeleteListener? = null
-
+    interface ItemEditListener {
+        fun onEditItem(recyclerViewType: Int, position: Int)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemLoadBinding.inflate(inflater, parent, false)
@@ -44,11 +43,15 @@ class LoadAdapter(private val loads: MutableList<Load>) :
             itemDeleteListener?.onDeleteItem(position)
             true
         }
+        holder.itemView.setOnClickListener {
+            itemEditListener?.onEditItem(2,position) // Trigger item edit event
+        }
     }
 
     override fun getItemCount(): Int {
         return loads.size
     }
+
     override fun getItemViewType(position: Int): Int {
         return when (loads[position]) {
             is PointLoadV -> VIEW_TYPE_POINT_LOAD_V

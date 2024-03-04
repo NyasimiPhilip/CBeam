@@ -25,13 +25,23 @@ class BeamDesignFragment : Fragment() {
         // Set action bar title to an empty string
         (activity as? AppCompatActivity)?.supportActionBar?.title = ""
 
+        binding.deleteAll.setOnClickListener {
+            binding.editTextHeight.text.clear()
+            binding.editTextWidth.text.clear()
+            binding.editTextCover.text.clear()
+            binding.editTextMoment.text.clear()
+            binding.editTextStrength.text.clear()
+            binding.editTextReinforcement.text.clear()
+            binding.editTextBarDiameter.text.clear()
+            binding.editTextLinkDiameter.text.clear()
+            binding.textViewResult.text = ""
+        }
         binding.buttonCalculate.setOnClickListener {
             calculate()
         }
         viewModel.result.observe(viewLifecycleOwner) { result ->
             binding.textViewResult.text = result
         }
-
         return binding.root
     }
 
@@ -39,7 +49,8 @@ class BeamDesignFragment : Fragment() {
         val height = binding.editTextHeight.text.toString().toDoubleOrNull() ?: return
         val width = binding.editTextWidth.text.toString().toDoubleOrNull() ?: return
         val cover = binding.editTextCover.text.toString().toDoubleOrNull() ?: return
-        val moment = binding.editTextMoment.text.toString().toDoubleOrNull() ?: return
+        val momentString = binding.editTextMoment.text.toString()
+        val moment = momentString.toDoubleOrNull()?.times(1e6) ?: return
         val strength = binding.editTextStrength.text.toString().toDoubleOrNull() ?: return
         val reinforcementStrength = binding.editTextReinforcement.text.toString().toDoubleOrNull() ?: return
         val barDiameter = binding.editTextBarDiameter.text.toString().toDoubleOrNull() ?: return
@@ -73,5 +84,4 @@ class BeamDesignFragment : Fragment() {
             binding.editTextLinkDiameter.setText(savedInstanceState.getString("linkDiameter", ""))
         }
     }
-
 }

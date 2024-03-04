@@ -37,8 +37,9 @@ import com.chaquo.python.android.AndroidPlatform
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
 class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
-    LoadAdapter.ItemDeleteListener {
+    LoadAdapter.ItemDeleteListener, SupportAdapter.ItemEditListener, LoadAdapter.ItemEditListener {
 
     private lateinit var binding: FragmentMainBinding
     private lateinit var supportAdapter: SupportAdapter
@@ -50,19 +51,15 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
     private val viewModel: MainFragmentViewModel by activityViewModels {
         SavedStateViewModelFactory(requireActivity().application, this)
     }
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        Log.d("Creation","onCreateView")
         binding = FragmentMainBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -79,10 +76,8 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
             lifecycleOwner = viewLifecycleOwner
 
             this@MainFragment.progressBar = progressBar
-            supportAdapter = SupportAdapter(viewModel.supportsLiveData.value ?: mutableListOf())
-            supportAdapter.itemDeleteListener
-            loadAdapter = LoadAdapter(viewModel.loadsLiveData.value ?: mutableListOf())
-            loadAdapter.itemDeleteListener
+            supportAdapter = SupportAdapter(viewModel.supportsLiveData.value ?: mutableListOf(), this@MainFragment, this@MainFragment)
+            loadAdapter = LoadAdapter(viewModel.loadsLiveData.value ?: mutableListOf(), this@MainFragment, this@MainFragment)
             rvLoads.adapter = loadAdapter
             rvSupports.adapter = supportAdapter
             rvLoads.layoutManager = LinearLayoutManager(requireContext())
@@ -100,30 +95,29 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                 // Update bending moment TextView
                 binding.bendingMomentTV.text = bendingMoment
             }
-
             btnAddSupport.setOnClickListener {
-                SupportDialog.show(requireContext(), object : SupportDialog.SupportDialogListener {
-                    override fun onSupportAdded(support: Support?) {
-                        support?.let {
+                SupportDialog.show(requireContext(), null, object : SupportDialog.SupportDialogListener {
+                    override fun onSupportAdded(updatedSupport: Support?) {
+                        updatedSupport?.let {
                             viewModel.addSupport(it)
                         }
                     }
                 })
             }
             btnAddLoad.setOnClickListener {
-                LoadDialog.show(requireContext(), object : LoadDialog.LoadDialogListener {
+                LoadDialog.show(requireContext(),null,  object : LoadDialog.LoadDialogListener {
                     override fun onLoadAdded(load: Load, callback: () -> Unit) {
                         viewModel.addLoad(load)
                     }
                 })
             }
-            deleteCV.setOnClickListener{
-                editTextBeamLength.setText("");
-                viewModel.clearData() // Call a method in ViewModel to clear the data
-                supportAdapter.notifyDataSetChanged() // Notify adapters to update UI
+            deleteCV.setOnClickListener {
+                editTextBeamLength.setText("")
+                viewModel.clearData()
+                supportAdapter.notifyDataSetChanged()
                 loadAdapter.notifyDataSetChanged()
-                analysisCV.visibility = View.GONE // Hide any visible analysis
-                isAnalysisPerformed = false // Reset the analysis flag
+                analysisCV.visibility = View.GONE
+                isAnalysisPerformed = false
             }
             btnAnalyse.setOnClickListener {
                 val beamLength: Double = editTextBeamLength.text.toString().toDoubleOrNull() ?: 0.0
@@ -143,12 +137,11 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                         viewModel.updateBendingMoment("Bending Moment : $bendingMoment")
 
                         analysisCV.visibility = View.VISIBLE
-                        isAnalysisPerformed = true // Set flag to true when analysis is performed
+                        isAnalysisPerformed = true
 
                         Log.d("Output", "$supportReaction \n $bendingMoment")
 
-                    } catch (e: PyException) {
-                        // Show error message
+                    } catch (e: PyException) {                        // Show error message
                         Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
                         Log.d("MyTag", "Support objects: ${viewModel.supportsLiveData.value}")
                         Log.d("MyTag", "Load objects: ${viewModel.loadsLiveData.value}")
@@ -159,6 +152,7 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                     }
                 }
             }
+
             btnPlot.setOnClickListener {
                 val beamLength: Double = editTextBeamLength.text.toString().toDoubleOrNull() ?: 0.0
 
@@ -199,27 +193,7 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                     }
                 }
             }
-            // Observe LiveData for support reaction and bending moment
-            viewModel.supportReaction.observe(viewLifecycleOwner) { reaction ->
-                supportReactionTV.text = reaction
-            }
 
-            viewModel.bendingMoment.observe(viewLifecycleOwner) { moment ->
-                bendingMomentTV.text = moment
-            }
-            fun EditText.showKeyboard() {
-                isFocusableInTouchMode = true
-                isFocusable = true
-                requestFocus()
-                val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-            }
-
-            fun EditText.hideKeyboard() {
-                clearFocus()
-                val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
-            }
             editTextBeamLength.setOnClickListener {
                 editTextBeamLength.showKeyboard()
             }
@@ -239,7 +213,6 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                 }
                 false
             }
-
             // Swipe-to-delete functionality for supports
             val supportItemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
                 0,
@@ -252,7 +225,6 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
                 ): Boolean {
                     return false
                 }
-
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
                     viewModel.removeSupport(position)
@@ -282,9 +254,53 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
             })
 
             loadItemTouchHelper.attachToRecyclerView(rvLoads)
+
         }
         return view
     }
+    override fun onEditItem(recyclerViewType: Int, position: Int) {
+        when (recyclerViewType) {
+            LOAD_RECYCLERVIEW_TYPE -> {
+                val loadList = viewModel.loadsLiveData.value
+                if (loadList.isNullOrEmpty() || position >= loadList.size) {
+                    Toast.makeText(context, "Invalid position", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                val load = loadList[position]
+                LoadDialog.show(requireContext(), load, object : LoadDialog.LoadDialogListener {
+                    override fun onLoadAdded(updatedLoad: Load, callback: () -> Unit) {
+                        // Update the load item in the ViewModel if needed
+                        viewModel.updateLoad(position, updatedLoad)
+                        loadAdapter.notifyDataSetChanged()
+                    }
+                })
+            }
+            SUPPORT_RECYCLERVIEW_TYPE -> {
+                val supportList = viewModel.supportsLiveData.value
+                if (supportList.isNullOrEmpty() || position >= supportList.size) {
+                    Toast.makeText(context, "Invalid position", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                val support = supportList[position]
+                SupportDialog.show(requireContext(), support, object : SupportDialog.SupportDialogListener {
+                    override fun onSupportAdded(updatedSupport: Support?) {
+                        // Update the support item in the ViewModel if needed
+                        updatedSupport?.let {
+                            viewModel.updateSupport(position, it)
+                            supportAdapter.notifyDataSetChanged()
+                        }
+                    }
+                })
+            }
+            else -> {
+                Toast.makeText(context, "Invalid RecyclerView type", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+
+
     override fun onDeleteItem(position: Int) {
         // This method is called when an item is swiped and deleted
         // Implement your logic here if needed
@@ -292,10 +308,26 @@ class MainFragment : Fragment(), SupportAdapter.ItemDeleteListener,
     private fun showLoadingScreen() {
         progressBar.visibility = View.VISIBLE
     }
-
     private fun hideLoadingScreen() {
         progressBar.visibility = View.GONE
     }
 
+    private fun EditText.showKeyboard() {
+        isFocusableInTouchMode = true
+        isFocusable = true
+        requestFocus()
+        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }
 
+    private fun EditText.hideKeyboard() {
+        clearFocus()
+        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+    }
+    // Define constants for RecyclerView types
+    private companion object {
+        const val SUPPORT_RECYCLERVIEW_TYPE = 1
+        const val LOAD_RECYCLERVIEW_TYPE = 2
+    }
 }

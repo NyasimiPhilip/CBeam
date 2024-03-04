@@ -6,4 +6,10 @@
         android:title="@null"
         app:showAsAction="ifRoom"
         app:actionLayout="@layout/menu_item_beam_design"/>
+
+    <item
+        android:title="@null"
+        app:showAsAction="ifRoom"
+        app:actionLayout="@layout/menu_custom_item"
+        />
 </menu>
