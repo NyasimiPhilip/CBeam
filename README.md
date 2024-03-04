@@ -1,4 +1,4 @@
- <img src="iconic.png" alt="Logo">
+ <img src="Icon.png" alt="Logo">
  <br>      
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF"> 
