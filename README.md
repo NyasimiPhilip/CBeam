@@ -1,5 +1,5 @@
 <h1>Cbeam</h1> 
- <img src="Update.png" alt="Logo">
+ <img src="update.png" alt="Logo">
     <p>An Android app to automatically to visualise sfd and bmd profiles</p>   
     <h2>Note</h2>
     <p>This project is still inn development Feel free to contribute.</p>
