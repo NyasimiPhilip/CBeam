@@ -1,7 +1,5 @@
-<div style="display: flex; align-items: center;">
-    <img src="Icon.png" alt="Logo">
-    <h1 style="margin-left: 20px;">Your Text Here</h1>
-</div>
+![Logo](Icon.png) Your Text Here
+
  <br>      
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF"> 
