@@ -1,4 +1,7 @@
- <img src="Icon.png" alt="Logo">
+<div style="display: flex; align-items: center;">
+    <img src="Icon.png" alt="Logo">
+    <h1 style="margin-left: 20px;">Your Text Here</h1>
+</div>
  <br>      
     <h2>Demo</h2>
   <img src="Demo.gif" alt="DEMO GIF"> 
@@ -27,5 +30,5 @@
     </ol>
     <h2>Developers</h2>
     <h3>Author</h3>
-    <p><a href="https://github.com/NyasimiPhilip">Nyasimi Philip</a></p>
+    <p><a href="https://github.com/NyasimiPhilip">Nyasimi Philip🫡</a></p>
 
