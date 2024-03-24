@@ -21,7 +21,7 @@
     <p>Contributions are welcome! To contribute, please follow these guidelines:</p>
     <ol>
         <li>Fork the repository and clone it to your local machine.</li>
-        <li>Make your changes and commit them with descriptive commit messages.</li>
+        <li>Make your changes and commit them with descriptive commit messages</li>
         <li>Push your changes to your fork on GitHub.</li>
         <li>Open a pull request to the main repository, explaining your changes and their purpose.</li>
     </ol>
