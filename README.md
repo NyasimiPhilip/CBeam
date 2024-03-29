@@ -6,7 +6,7 @@
     <ul>
         <li>Add Load configuration.</li>
         <li>Edit  added Load Configuration.</li>
-        <li>Add Support configuration.</li>
+        <li>Add Support configuration</li>
         <li>Edit  Support Configuration.</li>
         <li>Swipe to delete Support or Loads</li>
          <li>Plot Beam representation</li>
