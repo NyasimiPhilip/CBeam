@@ -13,7 +13,6 @@
          <li>Plot SFD and BMD profiles</li>        
     </ul>
     <h2>Installation</h2>
-    <p>Get it on <a >Playstore</a></p>
     <h2>License</h2>
     <p>This project is licensed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3 License</a>.</p>
     <h2>Contributing</h2>
